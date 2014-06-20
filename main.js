@@ -17,7 +17,6 @@ var server = http.createServer(function(req, res) {
 		controllers.staticFileServer(res, uri);
 		return;
 	}
-
 	else
 	{
 		controllers.notFound(res);	
