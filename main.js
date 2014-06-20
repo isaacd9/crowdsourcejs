@@ -4,13 +4,13 @@ var path = require('path');
 var fs = require('fs');
 
 var views = require('./views');
+var controllers = require('./controllers');
 
 var server = http.createServer(function(req, res) {
-	
+	console.log("A request!");
 	var uri = url.parse(req.url).pathname;
 	if(uri == "/" || uri == "/view" || uri == "" ) {
-		res.writeHead(200, {'Content-Type': 'text/html' });
-		views.renderView(res, "viewquestion");
+		controllers.viewQuestion(res);
 		return;
 	}
 	if(uri.substr(0,7) == "/public") {
@@ -25,6 +25,7 @@ var server = http.createServer(function(req, res) {
 		fs.readFile(filename, "binary", function(err,file) {
 			if (err) throw err
 			res.writeHead(200);
+			console.log("Hit public endpoint. Serving ".concat(filename));
 			res.write(file, "binary");
 			res.end();
 			});
