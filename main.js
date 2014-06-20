@@ -14,30 +14,16 @@ var server = http.createServer(function(req, res) {
 		return;
 	}
 	if(uri.substr(0,7) == "/public") {
-		filename=path.join(process.cwd(), uri);
-		fs.exists(filename, function(exists) {
-			if(!exists) {
-				res.writeHead(404, {"Content-Type": 'text/plain'});
-				res.write("Error 404!");
-				res.end();
-				return;
-				}
-		fs.readFile(filename, "binary", function(err,file) {
-			if (err) throw err
-			res.writeHead(200);
-			console.log("Hit public endpoint. Serving ".concat(filename));
-			res.write(file, "binary");
-			res.end();
-			});
-		});
+		controllers.staticFileServer(res, uri);
+		return;
 	}
 
-		else
-			{	
-				res.writeHead(404, {"Content-Type": 'text/plain'});
-				res.write("Error 404!");
-				res.end();
-			}
+	else
+	{	
+		res.writeHead(404, {"Content-Type": 'text/plain'});
+		res.write("Error 404!");
+		res.end();
+	}
 	});
 server.listen(8000);
 
