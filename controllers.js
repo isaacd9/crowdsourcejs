@@ -6,7 +6,10 @@ var views = require('./views');
 
 exports.viewQuestion = function(response) {
 		response.writeHead(200, {'Content-Type': 'text/html' });
-		views.renderView(response, "viewquestion");
+		var context = {"question" : "Why did the chicken cross the road?",
+				"yes" : 0,
+				"no" : 5};
+		views.renderView(response, "viewquestion", context);
 		console.log("Hit views endpoint");
 }
 

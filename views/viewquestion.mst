@@ -18,8 +18,8 @@
     <div class="container">  
       <h2>Crowdsource</h2>    
       <div class="jumbotron">
-        <p class="question">Why did the chicken cross the road? Should he have crossed it? What happens now?</p>
-        <p><a class="btn btn-success" href="#" role="button">Yes (5)</a><a class="btn btn-danger" href="#" role="button">No (10)</a></p>
+        <p class="question">{{question}}</p>
+        <p><a class="btn btn-success" href="#" role="button">Yes ({{yes}})</a><a class="btn btn-danger" href="#" role="button">No ({{no}})</a><a class="btn btn-info" href="#" role="button">Submit Your Own</a></p>
       </div>
       <div class="footer">
         <p>&copy; Isaac Diamond</p>

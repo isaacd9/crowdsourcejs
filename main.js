@@ -9,7 +9,7 @@ var controllers = require('./controllers');
 var server = http.createServer(function(req, res) {
 	console.log("A request!");
 	var uri = url.parse(req.url).pathname;
-	if(uri == "/" || uri == "/view" || uri == "" ) {
+	if(uri == "/" || uri == "/view") {
 		controllers.viewQuestion(res);
 		return;
 	}
