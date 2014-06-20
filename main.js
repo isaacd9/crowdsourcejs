@@ -19,10 +19,9 @@ var server = http.createServer(function(req, res) {
 	}
 
 	else
-	{	
-		res.writeHead(404, {"Content-Type": 'text/plain'});
-		res.write("Error 404!");
-		res.end();
+	{
+		controllers.notFound(res);	
+		return;
 	}
 	});
 server.listen(8000);

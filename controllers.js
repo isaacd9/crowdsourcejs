@@ -10,15 +10,19 @@ exports.viewQuestion = function(response) {
 		console.log("Hit views endpoint");
 }
 
+exports.notFound = function(response) {
+		response.writeHead(404, {"Content-Type": 'text/plain'});
+		response.write("Error 404!");
+		response.end();
+}
+
 exports.staticFileServer = function(response, uri) {
 		filename=path.join(process.cwd(), uri);
 		fs.exists(filename, function(exists) {
 			if(!exists) {
-				response.writeHead(404, {"Content-Type": 'text/plain'});
-				response.write("Error 404!");
-				response.end();
+				exports.notFound(response);
 				return;
-				}
+			}
 		fs.readFile(filename, "binary", function(err,file) {
 			if (err) throw err
 			response.writeHead(200);
@@ -28,3 +32,4 @@ exports.staticFileServer = function(response, uri) {
 			});
 		});
 }
+
