@@ -13,6 +13,12 @@ exports.viewQuestion = function(response) {
 		console.log("Hit views endpoint");
 }
 
+exports.submitQuestion = function(response) {
+		response.writeHead(200, {'Content-Type': 'text/html' });
+		views.renderView(response, "submit");
+		console.log("Hit submit endpoint");
+}
+
 exports.notFound = function(response) {
 		response.writeHead(404, {"Content-Type": 'text/plain'});
 		response.write("Error 404!");
