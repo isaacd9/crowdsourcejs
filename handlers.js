@@ -1,5 +1,7 @@
 var querystring = require("querystring");
 
+var database = require("./database");
+
 exports.submitHandler = function(request) {
 	var postData = "";
 	request.on('data', function(content) {

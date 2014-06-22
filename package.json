@@ -1,0 +1,24 @@
+{
+  "name": "crowdsourcejs",
+  "version": "0.0.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {
+    "mustache": "~0.8.2",
+    "mysql": "~2.3.2",
+    "sequelize": "~1.7.9"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/isaacd9/crowdsourcejs.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/isaacd9/crowdsourcejs/issues"
+  }
+}

@@ -1,8 +1,19 @@
 var path = require('path');
 var fs = require('fs');
 
+var database = require('./database');
 var views = require('./views');
 
+exports.notFound = function(response) {
+		response.writeHead(404, {"Content-Type": 'text/plain'});
+		response.write("Error 404!");
+		response.end();
+}
+
+exports.redirect = function(response, redirectURL) {
+		response.writeHead(301, {'Location' : '../'.concat(redirectURL)});
+		response.end();
+}
 
 exports.viewQuestion = function(response) {
 		response.writeHead(200, {'Content-Type': 'text/html' });
@@ -17,12 +28,6 @@ exports.submitQuestion = function(response) {
 		response.writeHead(200, {'Content-Type': 'text/html' });
 		views.renderView(response, "submit");
 		console.log("Hit submit endpoint");
-}
-
-exports.notFound = function(response) {
-		response.writeHead(404, {"Content-Type": 'text/plain'});
-		response.write("Error 404!");
-		response.end();
 }
 
 exports.staticFileServer = function(response, uri) {

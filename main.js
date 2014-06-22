@@ -3,9 +3,12 @@ var url = require('url');
 var path = require('path');
 var fs = require('fs');
 
+var database = require('./database');
 var views = require('./views');
 var controllers = require('./controllers');
 var handlers = require('./handlers');
+
+var sequelize = database.dbconnect();
 
 var server = http.createServer(function(req, res) {
 	console.log("A request!");
@@ -21,7 +24,7 @@ var server = http.createServer(function(req, res) {
 		}
 		if(req.method == "POST") {
 			handlers.submitHandler(req);
-			controllers.viewQuestion(res);		
+			controllers.redirect(res,'view');		
 		}
 		return;
 	}
