@@ -1,8 +1,6 @@
-var Sequelize = require('sequelize'),
-		sequelize = new Sequelize('crowdsource', 'root', 'nodeisfun', {
-			dialect: "mysql",
-			port: 3306,
-	});
+var Sequelize = require('sequelize')
+
+var sequelize = new Sequelize('crowdsource', 'root', 'nodeisfun', {dialect: "mysql",port: 3306});
 
 sequelize.authenticate().complete(function(error) {
 		if (!!error) {
@@ -10,6 +8,6 @@ sequelize.authenticate().complete(function(error) {
 		}
 });
 	
-var question = sequelize.import('models/question.js');
+module.exports["question"] = sequelize.import(__dirname + '/models/question');
 	
 module.exports.sequelize = sequelize;

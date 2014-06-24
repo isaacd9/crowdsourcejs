@@ -1,7 +1,7 @@
 var path = require('path');
 var fs = require('fs');
 
-var models = require('./database');
+var database = require('./database');
 var views = require('./views');
 
 exports.notFound = function(response) {
@@ -15,13 +15,35 @@ exports.redirect = function(response, redirectURL) {
 		response.end();
 }
 
-exports.viewQuestion = function(response) {
+exports.viewQuestion = function(response, id) {
+	if(!!id) {	
 		response.writeHead(200, {'Content-Type': 'text/html' });
-		var context = {"question" : "Why did the chicken cross the road?",
-				"yes" : 0,
-				"no" : 5};
-		views.renderView(response, "viewquestion", context);
-		console.log("Hit views endpoint");
+		var question = database.question;
+
+		question.find(id).success(function(question) {
+			if(!!question) {
+				var context = {"question" : question.question, 
+						"yes" : question.yes,
+						"no" : question.no};
+			console.log(question);
+			views.renderView(response, "viewquestion", context);
+			console.log("Hit views endpoint");
+			}
+			else {
+				exports.notFound(response);
+				return;
+			}
+		
+		}).error(function() {
+			exports.notFound(response);
+			return;
+		});
+	}
+	else {
+		console.log("no id");
+		return;
+	}
+	
 }
 
 exports.submitQuestion = function(response) {

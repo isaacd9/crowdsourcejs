@@ -11,8 +11,10 @@ var handlers = require('./handlers');
 var server = http.createServer(function(req, res) {
 	console.log("A request!");
 	var uri = url.parse(req.url).pathname;
-	if(uri == "/" || uri == "/view") {
-		controllers.viewQuestion(res);
+	if(uri == "/" || uri.match(/view\/(\d+)?/ig) != null) {
+		questionid = parseInt(uri.match(/\d+/g));
+		console.log(questionid);
+		controllers.viewQuestion(res,questionid);
 		return;
 	}
 	if(uri == "/submit") {
