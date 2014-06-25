@@ -53,7 +53,7 @@ exports.submitQuestion = function(response) {
 }
 
 exports.staticFileServer = function(response, uri) {
-		filename=path.join(process.cwd(), uri);
+		filename=path.join(process.cwd(), "../", uri);
 		fs.exists(filename, function(exists) {
 			if(!exists) {
 				exports.notFound(response);
