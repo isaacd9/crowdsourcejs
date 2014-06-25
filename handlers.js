@@ -22,12 +22,9 @@ submitHandler.prototype.handle = function() {
 		console.log(question);
 		var newquestion = database.question.build({question: question, yes: 0, no: 0});
 		newquestion.save().success(function() {
-			database.question.find({where: {question: newquestion.question}}).success(function(questiondata){
-				//console.log(questiondata.id);
-				console.log(submitHandler);
-				thisSubmitHandler.emit("success",questiondata.id);
+				console.log(newquestion);
+				thisSubmitHandler.emit("success",newquestion.id);
 				return;
-			});
 		});
 	});
 }
