@@ -3,7 +3,7 @@ var path = require('path');
 var Mustache = require('mustache');
 
 exports.renderView = function(response, viewname, context ) {
-	fs.readFile(path.join('views',viewname.concat('.mst')), {encoding: 'ascii'}, function(error, data) {
+	fs.readFile(path.join('views',viewname.concat('.html.mst')), {encoding: 'ascii'}, function(error, data) {
 		response.end(Mustache.render(data, context));
 	});
 };
