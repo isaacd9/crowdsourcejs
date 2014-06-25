@@ -25,7 +25,6 @@ var server = http.createServer(function(req, res) {
 		}
 		if(req.method == "POST") {
 			handlers.submitHandler(req).on("success", function(id){
-				console.log("wtf is happening");
 				controllers.redirect(res,'view/'.concat(id));		
 			});
 		}
