@@ -1,13 +1,39 @@
 var querystring = require("querystring");
+var events = require("events").EventEmitter;
+var sys = require("util");
 
 var database = require("./database");
 
-exports.submitHandler = function(request) {
+function submitHandler(request) {
+	this.request=request;
+	events.call(this);
+}
+
+sys.inherits(submitHandler, events);
+
+submitHandler.prototype.handle = function() {
+	var thisSubmitHandler=this;
 	var postData = "";
-	request.on('data', function(content) {
+	this.request.on('data', function(content) {
 		postData+=content;
 	});
-	request.on('end', function(request) {
-		console.log(querystring.parse(postData).question);
+	this.request.on('end', function() {
+		question = querystring.parse(postData).question;
+		console.log(question);
+		var newquestion = database.question.build({question: question, yes: 0, no: 0});
+		newquestion.save().success(function() {
+			database.question.find({where: {question: newquestion.question}}).success(function(questiondata){
+				//console.log(questiondata.id);
+				console.log(submitHandler);
+				thisSubmitHandler.emit("success",questiondata.id);
+				return;
+			});
+		});
 	});
+}
+
+module.exports.submitHandler = function(request) {
+	var submithandler = new submitHandler(request);
+	submithandler.handle();
+	return submithandler;
 }

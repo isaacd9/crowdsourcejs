@@ -3,6 +3,7 @@ var url = require('url');
 var path = require('path');
 var fs = require('fs');
 
+
 var models = require('./database');
 var views = require('./views');
 var controllers = require('./controllers');
@@ -23,8 +24,10 @@ var server = http.createServer(function(req, res) {
 			controllers.submitQuestion(res);
 		}
 		if(req.method == "POST") {
-			handlers.submitHandler(req);
-			controllers.redirect(res,'view');		
+			handlers.submitHandler(req).on("success", function(id){
+				console.log("wtf is happening");
+				controllers.redirect(res,'view/'.concat(id));		
+			});
 		}
 		return;
 	}
