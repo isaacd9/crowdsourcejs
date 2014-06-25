@@ -25,7 +25,6 @@ exports.viewQuestion = function(response, id) {
 				var context = {"question" : question.question, 
 						"yes" : question.yes,
 						"no" : question.no};
-			console.log(question);
 			views.renderView(response, "viewquestion", context);
 			console.log("Hit views endpoint");
 			}
