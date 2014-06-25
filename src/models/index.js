@@ -8,6 +8,6 @@ sequelize.authenticate().complete(function(error) {
 		}
 });
 	
-module.exports["question"] = sequelize.import(__dirname + '/models/question');
+module.exports["question"] = sequelize.import(__dirname + '/question');
 	
 module.exports.sequelize = sequelize;

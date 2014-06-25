@@ -1,7 +1,7 @@
 var path = require('path');
 var fs = require('fs');
 
-var database = require('./database');
+var database = require('./models');
 var views = require('./views');
 
 exports.notFound = function(response) {

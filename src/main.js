@@ -3,8 +3,6 @@ var url = require('url');
 var path = require('path');
 var fs = require('fs');
 
-
-var models = require('./database');
 var views = require('./views');
 var controllers = require('./controllers');
 var handlers = require('./handlers');

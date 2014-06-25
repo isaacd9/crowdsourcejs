@@ -2,7 +2,7 @@
   "name": "crowdsourcejs",
   "version": "0.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "src/main.js",
   "dependencies": {
     "mustache": "~0.8.2",
     "mysql": "~2.3.2",
