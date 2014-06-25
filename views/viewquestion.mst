@@ -19,7 +19,7 @@
       <h2>Crowdsource</h2>    
       <div class="jumbotron">
         <p class="question">{{question}}</p>
-        <p><a class="btn btn-success" href="#" role="button">Yes ({{yes}})</a><a class="btn btn-danger" href="#" role="button">No ({{no}})</a><a class="btn btn-info" href="#" role="button">Submit Your Own</a></p>
+        <p><a class="btn btn-success" href="#" role="button">Yes ({{yes}})</a><a class="btn btn-danger" href="#" role="button">No ({{no}})</a><a class="btn btn-info" href="../submit" role="button">Submit Your Own</a></p>
       </div>
       <div class="footer">
         <p>&copy; Isaac Diamond</p>
