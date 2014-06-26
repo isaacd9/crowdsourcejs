@@ -10,7 +10,7 @@
     <!-- Bootstrap core CSS -->
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="../public/crowdsource.css" rel="stylesheet">
+    <link href="../public/styles/crowdsource.css" rel="stylesheet">
   </head>
 
   <body>
@@ -19,7 +19,7 @@
       <h2>Crowdsource</h2>    
       <div class="jumbotron">
         <p class="question">{{question}}</p>
-        <p><a class="btn btn-success" href="#" role="button">Yes ({{yes}})</a><a class="btn btn-danger" href="#" role="button">No ({{no}})</a><a class="btn btn-info" href="../submit" role="button">Submit Your Own</a></p>
+        <p><a class="btn btn-success" href="#" role="button" value="{{yes}}">Yes ({{yes}})</a><a class="btn btn-danger" href="#" role="button" value="{{no}}">No ({{no}})</a><a class="btn btn-info" href="../submit" role="button">Submit Your Own</a></p>
       </div>
       <div class="footer">
         <p>&copy; Isaac Diamond</p>
