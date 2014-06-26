@@ -22,11 +22,28 @@ exports.renderJSON = function(response, json) {
 }
 
 exports.viewQuestion = function(response, id) {
-	if(!!id) {	
 		response.writeHead(200, {'Content-Type': 'text/html' });
-		var question = database.question;
-
-		question.find(id).success(function(question) {
+		var Question = database.question;
+		if(!!!id) {
+			Question.count().success(function(numberOfQuestions) {
+					id=Math.floor((Math.random()*numberOfQuestions) +1);
+					
+					Question.find(id).success(function(question) {
+					if(!!question) {
+						var context = {"question" : question.question, 
+							"yes" : question.yes,
+							"no" : question.no,
+							"id" : question.id};
+						views.renderView(response, "viewquestion", context);
+						}
+					else {
+						exports.redirect(response, "/view");
+						}
+					});
+				});
+			}
+		else {
+		Question.find(id).success(function(question) {
 			if(!!question) {
 				var context = {"question" : question.question, 
 						"yes" : question.yes,
@@ -44,12 +61,7 @@ exports.viewQuestion = function(response, id) {
 			exports.notFound(response);
 			return;
 		});
-	}
-	else {
-		console.log("no id");
-		return;
-	}
-	
+		}
 }
 
 exports.submitQuestion = function(response) {

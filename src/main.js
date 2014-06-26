@@ -10,8 +10,8 @@ var handlers = require('./handlers');
 var server = http.createServer(function(req, res) {
 	console.log("A request!");
 	var uri = url.parse(req.url).pathname;
-	console.log(uri);
-	if(uri == "/" || uri.match(/view\/(\d+)?/ig) != null) {
+	if(uri == "/" || uri =="/view" ||uri.match(/view\/(\d+)?/ig) != null) {
+		console.log("processing view");
 		questionid = parseInt(uri.match(/\d+/g));
 		console.log(questionid);
 		controllers.viewQuestion(res,questionid);
