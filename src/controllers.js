@@ -15,6 +15,12 @@ exports.redirect = function(response, redirectURL) {
 		response.end();
 }
 
+exports.renderJSON = function(response, json) {
+		response.writeHead(200, {'Content-Type': 'application/json'});
+		response.write(JSON.stringify(json));
+		response.end();
+}
+
 exports.viewQuestion = function(response, id) {
 	if(!!id) {	
 		response.writeHead(200, {'Content-Type': 'text/html' });
@@ -24,7 +30,8 @@ exports.viewQuestion = function(response, id) {
 			if(!!question) {
 				var context = {"question" : question.question, 
 						"yes" : question.yes,
-						"no" : question.no};
+						"no" : question.no,
+						"id" : question.id};
 			views.renderView(response, "viewquestion", context);
 			console.log("Hit views endpoint");
 			}
